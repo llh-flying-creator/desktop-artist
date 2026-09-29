@@ -1,0 +1,39 @@
+appId: com.desktopui.beautify
+productName: 桌面UI美化
+copyright: Copyright © 2026 DesktopUIBeautify
+
+directories:
+  output: release
+  buildResources: build
+
+# 只打包构建产物与运行时依赖，避免把源码/工具链塞进 asar
+files:
+  - out/**
+  - package.json
+  - '!**/*.map'
+
+# koffi 是原生模块，必须从 asar 中解包后才能被 dlopen 加载
+asarUnpack:
+  - '**/node_modules/koffi/**'
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  # 只做光标覆盖层，不需要任何系统级注入，因此以普通权限运行（不弹 UAC）
+  requestedExecutionLevel: asInvoker
+  icon: build/icon.ico
+  artifactName: ${productName}-Setup-${version}.${ext}
+
+nsis:
+  oneClick: false
+  perMachine: true
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: 桌面UI美化
+  deleteAppDataOnUninstall: false
+
+portable:
+  artifactName: ${productName}-${version}-portable.${ext}

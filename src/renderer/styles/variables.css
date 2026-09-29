@@ -1,0 +1,67 @@
+/**
+ * 设计令牌（Design Tokens）
+ * 深浅色自动跟随系统：通过 html[data-theme] 切换。
+ */
+
+:root {
+  /* 强调色由 JS 依据配置注入，这里给出兜底值 */
+  --accent: #7c8cff;
+  --accent-2: #4dd4c0;
+  --accent-soft: rgba(124, 140, 255, 0.18);
+
+  /* 圆角体系 */
+  --radius-shell: 18px;
+  --radius-card: 14px;
+  --radius-control: 10px;
+  --radius-pill: 999px;
+
+  /* 玻璃层 */
+  --shell-alpha: 0.66;
+  --shell-grad-a: 20, 21, 28;
+  --shell-grad-b: 11, 12, 17;
+  --surface: rgba(255, 255, 255, 0.055);
+  --surface-hover: rgba(255, 255, 255, 0.09);
+  --surface-strong: rgba(255, 255, 255, 0.12);
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.2);
+
+  /* 文字 */
+  --text: #e9ebf5;
+  --text-muted: rgba(233, 235, 245, 0.62);
+  --text-dim: rgba(233, 235, 245, 0.4);
+
+  /* 语义色 */
+  --ok: #3ddc97;
+  --warn: #ffb457;
+  --error: #ff6b81;
+
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.28);
+
+  --speed: 160ms;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  --titlebar-h: 44px;
+  --sidebar-w: 200px;
+}
+
+/* 浅色模式 */
+html[data-theme='light'] {
+  --shell-grad-a: 250, 251, 254;
+  --shell-grad-b: 233, 236, 244;
+  --surface: rgba(255, 255, 255, 0.6);
+  --surface-hover: rgba(255, 255, 255, 0.85);
+  --surface-strong: rgba(255, 255, 255, 0.95);
+  --border: rgba(12, 14, 22, 0.09);
+  --border-strong: rgba(12, 14, 22, 0.18);
+  --text: #14161f;
+  --text-muted: rgba(20, 22, 31, 0.62);
+  --text-dim: rgba(20, 22, 31, 0.42);
+  --shadow-lg: 0 20px 60px rgba(20, 24, 40, 0.22);
+  --shadow-sm: 0 4px 14px rgba(20, 24, 40, 0.12);
+}
+
+/* 系统不支持窗口亚克力时提高不透明度，保证内容可读 */
+html[data-acrylic='off'] {
+  --shell-alpha: 0.975;
+}

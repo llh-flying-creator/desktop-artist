@@ -1,0 +1,39 @@
+{
+  "name": "desktop-ui-beautify",
+  "productName": "桌面UI美化",
+  "version": "1.0.0",
+  "description": "桌面UI美化 — Windows 光标特效（鼠标拖尾 / 点击涟漪）工具，无需管理员权限",
+  "main": "out/main/index.js",
+  "author": "DesktopUIBeautify",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "electron-vite dev",
+    "preview": "electron-vite preview",
+    "typecheck": "tsc --noEmit",
+    "build": "electron-vite build",
+    "dist": "npm run typecheck && electron-vite build && electron-builder --win --x64",
+    "dist:portable": "npm run typecheck && electron-vite build && electron-builder --win portable --x64",
+    "dist:dir": "npm run typecheck && electron-vite build && electron-builder --win --dir",
+    "icon": "node scripts/fix-exe-resources.cjs",
+    "shortcut": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/create-shortcut.ps1",
+    "clean": "node -e \"require('fs').rmSync('out',{recursive:true,force:true});require('fs').rmSync('release',{recursive:true,force:true})\""
+  },
+  "dependencies": {
+    "koffi": "^2.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.17",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
+    "electron-vite": "^2.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11",
+    "zustand": "^5.0.2"
+  }
+}
